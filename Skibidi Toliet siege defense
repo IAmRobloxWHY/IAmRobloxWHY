@@ -1,0 +1,270 @@
+game:GetService("StarterGui"):SetCore("SendNotification",{
+
+    Title = "Script Loaded";
+
+    Text = "Sub To WHY";
+
+    Duration = 20;
+
+})
+
+local kavoUi = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+
+local window = kavoUi.CreateLib("Skibid Toilet siege defense Script","Ocean")
+
+---Tabs
+
+local Tab1 = window:NewTab("Main")
+
+local Tab1Section = Tab1:NewSection("Main")
+
+local Tab2 = window:NewTab("Credits")
+
+local Tab2Section = Tab2:NewSection("Made By WHY")
+
+local Tab2Section = Tab2:NewSection("Subscribe To WHY On Youtube")
+
+---Buttons
+
+Tab1Section:NewButton("Auto Clicker","Auto",function()
+
+--// Setting \--
+
+local range = 1000
+
+--// Variable \--
+
+local player = game:GetService("Players").LocalPlayer
+
+--// Script \--
+
+game:GetService("RunService").RenderStepped:Connect(function()
+
+    local p = game.Players:GetPlayers()
+
+    for i = 2, #p do local v = p[i].Character
+
+        if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= range then
+
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+
+            if tool and tool:FindFirstChild("Handle") then
+
+                tool:Activate()
+
+                for i,v in next, v:GetChildren() do
+
+                    if v:IsA("BasePart") then
+
+                        firetouchinterest(tool.Handle,v,0)
+
+                        firetouchinterest(tool.Handle,v,1)
+
+                    end
+
+                end
+
+            end
+
+        end
+
+    end
+
+end)
+
+end)
+
+Tab1Section:NewButton("Camera Man Esp","esp",function()
+
+local lplr = game.Players.LocalPlayer
+
+local camera = game:GetService("Workspace").CurrentCamera
+
+local CurrentCamera = workspace.CurrentCamera
+
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+
+_G.TeamCheck = false -- Use True or False to toggle TeamCheck
+
+for i,v in pairs(game.Players:GetChildren()) do
+
+    local Tracer = Drawing.new("Line")
+
+    Tracer.Visible = false
+
+    Tracer.Color = Color3.new(255, 0, 0)
+
+    Tracer.Thickness = 1
+
+    Tracer.Transparency = 1
+
+    function lineesp()
+
+        game:GetService("RunService").RenderStepped:Connect(function()
+
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+
+                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                if OnScreen then
+
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+
+                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
+
+                        --//Teammates
+
+                        Tracer.Visible = false
+
+                    else
+
+                        --//Enemies
+
+                        Tracer.Visible = true
+
+                    end
+
+                else
+
+                    Tracer.Visible = false
+
+                end
+
+            else
+
+                Tracer.Visible = false
+
+            end
+
+        end)
+
+    end
+
+    coroutine.wrap(lineesp)()
+
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+
+    local Tracer = Drawing.new("Line")
+
+    Tracer.Visible = false
+
+    Tracer.Color = Color3.new(1,1,1)
+
+    Tracer.Thickness = 1
+
+    Tracer.Transparency = 1
+
+    function lineesp()
+
+        game:GetService("RunService").RenderStepped:Connect(function()
+
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+
+                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                if OnScreen then
+
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+
+                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
+
+                        --//Teammates
+
+                        Tracer.Visible = false
+
+                    else
+
+                        --//Enemies
+
+                        Tracer.Visible = true
+
+                    end
+
+                else
+
+                    Tracer.Visible = false
+
+                end
+
+            else
+
+                Tracer.Visible = false
+
+            end
+
+        end)
+
+    end
+
+    coroutine.wrap(lineesp)()
+
+end)
+
+end)
+
+Tab1Section:NewToggle("Infinite Jumps"," Infinite Jumps",function()
+
+local InfiniteJumpEnabled = true
+
+game:GetService("UserInputService").JumpRequest:connect(function()
+
+	if InfiniteJumpEnabled then
+
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+
+	end
+
+end)
+
+end)
+
+Tab1Section:NewButton("Speed","Increase speed",function()
+
+function isNumber(str)
+
+  if tonumber(str) ~= nil or str == 'inf' then
+
+    return true
+
+  end
+
+end
+
+local tspeed = 1
+
+local hb = game:GetService("RunService").Heartbeat
+
+local tpwalking = true
+
+local player = game:GetService("Players")
+
+local lplr = player.LocalPlayer
+
+local chr = lplr.Character
+
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+
+while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+
+  if hum.MoveDirection.Magnitude > 0 then
+
+    if tspeed and isNumber(tspeed) then
+
+      chr:TranslateBy(hum.MoveDirection * tonumber(tspeed))
+
+    else
+
+      chr:TranslateBy(hum.MoveDirection)
+
+    end
+
+  end
+
+end
+
