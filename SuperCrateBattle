@@ -1,0 +1,68 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Super Crate Battle", HidePremium = false, SaveConfig = true, ConfigFolder = "Loading"})
+
+local TabM = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+TabM:AddToggle({
+    Name = "AutoShoot (Only for TS and TC)",
+    Default = false,
+    Callback = function(Value)
+        while true do
+            wait(0.6) -- Adjusted wait time to 0.6 seconds
+
+            -- Get all children (enemies) from the Enemies folder
+            local enemies = workspace.Enemies:GetChildren()
+
+            -- Loop through each enemy and shoot at them
+            for _, enemy in ipairs(enemies) do
+                -- Create a table `args` with one element, which is the HumanoidRootPart of the current enemy
+                local args = {
+                    [1] = enemy.HumanoidRootPart
+                }
+
+                -- Fire the Shoot event of the Blast object with the given arguments using FireServer
+                game:GetService("Players").LocalPlayer.Character.Blast.Shoot:FireServer(unpack(args))
+            end
+        end
+    end
+})
+
+local TabP = Window:MakeTab({
+    Name = "Players",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+TabP:AddTextbox({
+    Name = "Speed",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(txt)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = txt
+    end	  
+})
+
+TabP:AddTextbox({
+    Name = "JumpPower",
+    Default = "",
+    TextDisappear = true,
+    Callback = function(txt)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = txt
+    end	  
+})
+
+TabP:AddButton({
+    Name = "InfJump",
+    Callback = function()
+        local InfiniteJumpEnabled = true
+        game:GetService("UserInputService").JumpRequest:Connect(function()
+            if InfiniteJumpEnabled then
+                game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+            end
+        end)
+    end    
+})
