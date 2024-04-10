@@ -11,21 +11,23 @@ TabM:AddToggle({
     Name = "AutoShoot (Only for TS and TC)",
     Default = false,
     Callback = function(Value)
-        while true do
-            wait(0.6) -- Adjusted wait time to 0.6 seconds
+        if Value then
+            while true do
+                wait(0.6) -- Adjusted wait time to 0.6 seconds
 
-            -- Get all children (enemies) from the Enemies folder
-            local enemies = workspace.Enemies:GetChildren()
+                -- Get all children (enemies) from the Enemies folder
+                local enemies = workspace.Enemies:GetChildren()
 
-            -- Loop through each enemy and shoot at them
-            for _, enemy in ipairs(enemies) do
-                -- Create a table `args` with one element, which is the HumanoidRootPart of the current enemy
-                local args = {
-                    [1] = enemy.HumanoidRootPart
-                }
+                -- Loop through each enemy and shoot at them
+                for _, enemy in ipairs(enemies) do
+                    -- Create a table `args` with one element, which is the HumanoidRootPart of the current enemy
+                    local args = {
+                        [1] = enemy.HumanoidRootPart
+                    }
 
-                -- Fire the Shoot event of the Blast object with the given arguments using FireServer
-                game:GetService("Players").LocalPlayer.Character.Blast.Shoot:FireServer(unpack(args))
+                    -- Fire the Shoot event of the Blast object with the given arguments using FireServer
+                    game:GetService("Players").LocalPlayer.Character.Blast.Shoot:FireServer(unpack(args))
+                end
             end
         end
     end
@@ -42,7 +44,7 @@ TabP:AddTextbox({
     Default = "",
     TextDisappear = true,
     Callback = function(txt)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = txt
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(txt) or 16 -- Default walk speed if input is invalid
     end	  
 })
 
@@ -51,7 +53,7 @@ TabP:AddTextbox({
     Default = "",
     TextDisappear = true,
     Callback = function(txt)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = txt
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(txt) or 50 -- Default jump power if input is invalid
     end	  
 })
 
