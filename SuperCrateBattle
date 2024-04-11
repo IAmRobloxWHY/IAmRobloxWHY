@@ -1,3 +1,9 @@
+-- Check if the game's ID matches Super Crate Battle's ID
+if game.PlaceId ~= 14542028158 then
+    return  -- Exit the script if the game ID doesn't match
+end
+
+-- Continue executing the script for Super Crate Battle
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Super Crate Battle", HidePremium = false, SaveConfig = true, ConfigFolder = "Loading"})
 
@@ -85,4 +91,4 @@ TabC:AddLabel("Made by gagghigggg")
 
 TabC:AddLabel("Name: SPDM_CodexWHY")
 
-TabC:AddLabel("Discord: iamfakerobloxhim")
+TabC:AddLabel("Discord: iamfakerobloxhim#14542028158") -- Discord ID added
