@@ -45,7 +45,7 @@ TabP:AddTextbox({
     TextDisappear = true,
     Callback = function(txt)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(txt) or 16 -- Default walk speed if input is invalid
-    end	  
+    end      
 })
 
 TabP:AddTextbox({
@@ -54,7 +54,7 @@ TabP:AddTextbox({
     TextDisappear = true,
     Callback = function(txt)
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(txt) or 50 -- Default jump power if input is invalid
-    end	  
+    end      
 })
 
 TabP:AddButton({
@@ -68,3 +68,21 @@ TabP:AddButton({
         end)
     end    
 })
+
+local TabC = Window:MakeTab({
+    Name = "Creator",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+--[[
+Name = <string> - The name of the tab.
+Icon = <string> - The icon of the tab.
+PremiumOnly = <bool> - Makes the tab accessible to Sirus Premium users only.
+]]
+
+TabC:AddLabel("Made by gagghigggg")
+
+TabC:AddLabel("Name: SPDM_CodexWHY")
+
+TabC:AddLabel("Discord: iamfakerobloxhim")
