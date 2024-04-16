@@ -1,0 +1,64 @@
+if game.PlaceId ~= 16775271914 then
+    return  -- Exit the script if the game ID doesn't match
+end
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "[ 💸 FREE!] OPEN FOR FREE", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local TabM = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+TabM:AddButton({
+    Name = "Auto 7 Key",
+    Callback = function()
+        while true do
+            wait()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2548.23438, 3.9352622, 1373.54199, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+        end
+    end     
+})
+
+TabM:AddButton({
+    Name = "Auto Open best crate",
+    Callback = function()
+        local function openCrate()
+            while true do
+                wait(0.5)
+                local args = {
+                    [1] = "LegendaryCase"
+                }
+                game:GetService("ReplicatedStorage").Assets.Remotes.Misc.BuyCase:FireServer(unpack(args))
+            end
+        end
+
+        local function finishCrate()
+            while true do
+                wait()
+                game:GetService("ReplicatedStorage").Assets.Remotes.Misc.FinishCase:FireServer()
+            end
+        end
+
+        spawn(openCrate)
+        spawn(finishCrate)
+    end    
+})
+
+TabM:AddButton({
+    Name = "Stop Auto Key And Auto Open Crate",
+    Callback = function()
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    end    
+})
+
+local TabC = Window:MakeTab({
+    Name = "Creator",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+TabC:AddLabel("Made by gagghigggg")
+TabC:AddLabel("Name: SPDM_CodexWHY")
+TabC:AddLabel("Discord: iamfakerobloxhim")
