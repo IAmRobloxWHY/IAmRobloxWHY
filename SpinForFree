@@ -3,7 +3,7 @@ if game.PlaceId ~= 15910329784 then
 end 
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/thanhdat4461/OrionMoblie/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Orion", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "[✨FREE!] Spin For Free ", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local TabM = Window:MakeTab ({ 
     Name = "Main", 
