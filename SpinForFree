@@ -1,0 +1,58 @@
+if game.PlaceId ~= 15910329784 then 
+    return -- Exit the script if the game ID doesn't match
+end 
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))() 
+local Window = OrionLib:MakeWindow({Name = "[✨FREE!] Spin For Free", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"}) 
+
+local TabM = Window:MakeTab ({ 
+    Name = "Main", 
+    Icon = "rbxassetid://4483345998", 
+    PremiumOnly = false 
+}) 
+
+TabM:AddButton({ 
+    Name = "Auto 14 Spin", 
+    Callback = function() 
+        _G.V = true
+        while _G.V do 
+            wait() 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-98.275116, 1.0599947, -1612.15125, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+        end
+    end      
+}) 
+
+TabM:AddButton({
+    Name = "Auto Spin", 
+    Callback = function()
+        _G.H = true
+        while _G.H do 
+            wait()
+            game:GetService("ReplicatedStorage").Assets.Remotes.Misc.SpinWheel:FireServer()
+        end
+    end     
+}) 
+
+TabM:AddButton({ 
+    Name = "Stop Auto Get Spin", 
+    Callback = function() 
+        _G.V = false
+    end     
+}) 
+
+TabM:AddButton({ 
+    Name = "Stop Auto Spin", 
+    Callback = function() 
+        _G.H = false
+    end     
+}) 
+
+local TabC = Window:MakeTab ({ 
+    Name = "Creator", 
+    Icon = "rbxassetid://4483345998", 
+    PremiumOnly = false 
+}) 
+
+TabC:AddLabel("Made by gagghigggg") 
+TabC:AddLabel("Name: SPDM_CodexWHY") 
+TabC:AddLabel("Discord: iamfakerobloxhim")
