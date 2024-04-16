@@ -47,6 +47,13 @@ TabM:AddButton({
     end     
 }) 
 
+TabM:AddButton({
+	Name = "AntiAfk",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/evxncodes/mainroblox/main/anti-afk", true))()
+  	end    
+})
+
 local TabC = Window:MakeTab ({ 
     Name = "Creator", 
     Icon = "rbxassetid://4483345998", 
