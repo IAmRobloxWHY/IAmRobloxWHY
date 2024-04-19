@@ -1,3 +1,6 @@
+_G.H = true
+_G.V = true
+
 if game.PlaceId ~= 11132099841 then 
     return -- Exit the script if the game ID doesn't match
 end 
@@ -33,6 +36,69 @@ TabM:AddToggle({
         end
     end    
 })
+
+TabM:AddButton({
+	Name = "Auto Get fish",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-141.199158, 3.77290869, -109.682816, 0.939700544, 0.341998309, 0, -0.341998309, 0.939700544, -0, -0, 0, 1)
+
+while _G.H do wait(0.1)
+fireproximityprompt(workspace.MainMap.FishingRod.prox.ProximityPrompt)
+end
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+TabM:AddButton({
+	Name = "Stop Auto Get fish",
+	Callback = function()
+      		_G.H = false
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+TabM:AddButton({
+	Name = "Auto Get cheese",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(126.294312, 5.25000429, -251.45636, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+while G.V do wait(0.1)
+fireproximityprompt(workspace.Maps.Sewer.Chillin.Rat.prox.ProximityPrompt)
+end
+  	end    
+})
+
+TabM:AddButton({
+	Name = "Stop Auto Get cheese",
+	Callback = function()
+      		_G.V = false
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
+TabM:AddButton({
+	Name = "Tp To bed",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-131.305725, 5.30000544, -65.2021866, -1, 8.74227766e-08, 0, 8.74227766e-08, 1, 8.74227766e-08, 7.64274186e-15, 8.74227766e-08, -1)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
 
 TabM:AddButton({
 	Name = "Tp To Secret Room",
