@@ -92,7 +92,7 @@ Name = <string> - The name of the button.
 Callback = <function> - The function of the button.
 ]]
 
-Tab:AddButton({
+TabM:AddButton({
 	Name = "Stop Auto Get rock",
 	Callback = function()
       		_G.F = false
