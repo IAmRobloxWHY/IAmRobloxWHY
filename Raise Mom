@@ -34,6 +34,18 @@ TabM:AddToggle({
     end    
 })
 
+TabM:AddButton({
+	Name = "Tp To Secret Room",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(314, 5, -233)
+  	end    
+})
+
+--[[
+Name = <string> - The name of the button.
+Callback = <function> - The function of the button.
+]]
+
 TabB:AddButton({
     Name = "Food",
     Callback = function()
