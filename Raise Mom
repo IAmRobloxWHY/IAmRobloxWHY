@@ -1,0 +1,83 @@
+if game.PlaceId ~= 11132099841 then 
+    return -- Exit the script if the game ID doesn't match
+end 
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/thanhdat4461/OrionMoblie/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "[UPD4] Raise Mom!", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local TabM = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local TabB = Window:MakeTab({
+    Name = "Buy",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local TabC = Window:MakeTab({
+    Name = "Creator",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+TabM:AddToggle({
+    Name = "Auto Click Mom",
+    Default = false,
+    Callback = function(Value)
+        while Value do
+            wait(0)
+            fireclickdetector(workspace.Mother.Hitbox.ClickDetector)
+        end
+    end    
+})
+
+TabB:AddButton({
+    Name = "Food",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RE.Food:FireServer()
+    end    
+})
+
+TabB:AddButton({
+    Name = "Roomate",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RE.Roomate:FireServer()
+    end    
+})
+
+TabB:AddButton({
+    Name = "FloppaCarpet",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RE.FloppaCarpet:FireServer()
+    end    
+})
+
+TabB:AddButton({
+    Name = "DripGlasses",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RE.DripGlasses:FireServer()
+    end    
+})
+
+TabB:AddButton({
+    Name = "MomsBed",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RE.MomsBed:FireServer()
+    end    
+})
+
+TabB:AddButton({
+    Name = "GamerGrass",
+    Callback = function()
+        game:GetService("ReplicatedStorage").RE.GamerGrass:FireServer()
+    end    
+})
+
+TabB:AddLabel("More Soon!")
+
+TabC:AddLabel("Made by gagghigggg")
+TabC:AddLabel("Name: SPDM_CodexWHY")
+TabC:AddLabel("Discord: iamfakerobloxhim")
