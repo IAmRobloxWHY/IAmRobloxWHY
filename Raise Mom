@@ -1,4 +1,3 @@
-_G.F = true
 _G.H = true
 _G.V = true
 
@@ -75,34 +74,6 @@ TabM:AddButton({
         _G.V = false
     end    
 })
-
-TabM:AddButton({
-	Name = "Auto Get rock",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(236.318878, 4.79250431, -261.072235, 0, 0, -1, 0, 1, 0, 1, 0, 0)
-
-while _G.F do wait()
-fireproximityprompt(workspace.Maps.MiningArea.Rocks:GetChildren()[5].ProximityPrompt)
-end
-  	end    
-})
-
---[[
-Name = <string> - The name of the button.
-Callback = <function> - The function of the button.
-]]
-
-TabM:AddButton({
-	Name = "Stop Auto Get rock",
-	Callback = function()
-      		_G.F = false
-  	end    
-})
-
---[[
-Name = <string> - The name of the button.
-Callback = <function> - The function of the button.
-]]
 
 TabM:AddButton({
     Name = "Tp To bed",
