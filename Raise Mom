@@ -68,7 +68,7 @@ Callback = <function> - The function of the button.
 TabM:AddButton({
 	Name = "Auto Get cheese",
 	Callback = function()
-      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(126.294312, 5.25000429, -251.45636, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(122, 5, -252)
 
 while G.V do wait(0.1)
 fireproximityprompt(workspace.Maps.Sewer.Chillin.Rat.prox.ProximityPrompt)
