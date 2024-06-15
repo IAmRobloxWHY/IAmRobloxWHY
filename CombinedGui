@@ -1,0 +1,153 @@
+local gui = Instance.new("ScreenGui")
+gui.Name = "CombinedGui"
+gui.Parent = game.CoreGui
+
+local TL = Instance.new("TextLabel")
+TL.Size = UDim2.new(0.3, 0, 0.2, 0)
+TL.Position = UDim2.new(0.68, 0, 0.5, 50)
+TL.BackgroundColor3 = Color3.new(1, 1, 1) -- Adjusted color format
+TL.BorderColor3 = Color3.new(0, 0, 0)
+TL.BorderSizePixel = 1
+TL.Text = "Thank you for using Made By ???" -- Corrected spelling of "Thank" and adjusted text
+TL.BackgroundTransparency = 0.1
+TL.TextColor3 = Color3.new(0, 1, 0) -- Adjusted color format
+TL.Font = Enum.Font.Code
+TL.Parent = gui
+TL.TextSize = 12
+
+local TB = Instance.new("TextButton")
+TB.Size = UDim2.new(0.2, 0, 0.15, 0)
+TB.Position = UDim2.new(0.4, 0, 0.5, -180)
+TB.BackgroundColor3 = Color3.new(1, 1, 1)
+TB.BorderColor3 = Color3.new(0, 0, 0)
+TB.BorderSizePixel = 1
+TB.Text = "Kill Aura: Off"
+TB.BackgroundTransparency = 0 
+TB.TextColor3 = Color3.new(1, 0, 0)
+TB.Font = Enum.Font.Code
+TB.TextSize = 12
+TB.Parent = gui
+
+local TB_3 = Instance.new("TextButton")
+TB_3.Size = UDim2.new(0.08, 0, 0.15, 0)
+TB_3.Position = UDim2.new(0.25, 0, 0.5, -180)
+TB_3.BackgroundColor3 = Color3.new(1, 1, 1)
+TB_3.BorderColor3 = Color3.new(0, 0, 0)
+TB_3.BorderSizePixel = 1
+TB_3.Text = "Summon Titan Boombox"
+TB_3.BackgroundTransparency = 0 
+TB_3.TextColor3 = Color3.new(0, 1, 0)
+TB_3.Font = Enum.Font.Code
+TB_3.Parent = gui
+TB_3.TextSize = 11
+
+local TB_2 = Instance.new("TextButton")
+TB_2.Size = UDim2.new(0.1, -6, 0.15, 0)
+TB_2.Position = UDim2.new(0.65, 0, 0.5, -180)
+TB_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TB_2.BorderColor3 = Color3.new(0, 0, 0)
+TB_2.BorderSizePixel = 1
+TB_2.Text = "X"
+TB_2.BackgroundTransparency = 1
+TB_2.TextColor3 = Color3.new(1, 0, 0)
+TB_2.Font = Enum.Font.Code
+TB_2.Parent = gui
+TB_2.TextSize = 12
+
+local isVisible = true -- Initial state
+
+local CnO = Instance.new("TextButton")
+CnO.Size = UDim2.new(0.1, 0, 0.1, 0)
+CnO.Position = UDim2.new(0.9, 0, 0.45, 0)
+CnO.BackgroundColor3 = Color3.new(1, 1, 1)
+CnO.BorderColor3 = Color3.new(0, 0, 0)
+CnO.BorderSizePixel = 1
+CnO.Text = "Close"
+CnO.BackgroundTransparency = 0 
+CnO.TextColor3 = Color3.new(1, 0, 0)
+CnO.Font = Enum.Font.Code
+CnO.Parent = gui
+CnO.TextSize = 10
+
+CnO.MouseButton1Click:Connect(function()
+    if isVisible then
+        isVisible = false
+        CnO.Text = "Open"
+        TB.Visible = false
+        TB_2.Visible = false
+        TB_3.Visible = false
+        CnO.TextColor3 = Color3.new(0, 1, 0)
+    else
+        isVisible = true
+        CnO.Text = "Close"
+        TB.Visible = true
+        TB_2.Visible = true
+        TB_3.Visible = true
+        CnO.TextColor3 = Color3.new(1, 0, 0)
+    end
+end)
+
+TB_2.MouseButton1Click:Connect(function()
+    TB:Destroy()
+    TB_3:Destroy()
+    CnO:Destroy()
+    gui:Destroy()
+end)
+
+TB.MouseButton1Click:Connect(function()
+    if getgenv().G then
+        getgenv().G = false
+        TB.Text = "Kill Aura: Off"
+        TB.TextColor3 = Color3.new(1, 0, 0)
+    else
+        getgenv().G = true
+        TB.Text = "Kill Aura: On"
+        TB.TextColor3 = Color3.new(0, 1, 0)
+        getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+        while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+            wait(1)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.Size = Vector3.new(112412400000, 112412400000, 112412400000) -- Adjusted size
+            for i,d in pairs(game:GetService("Workspace"):GetDescendants()) do
+                if d:IsA('Humanoid') and d.Parent.Name ~= game.Players.LocalPlayer.Name then
+                    d.Health = 0
+                end
+            end
+        end
+    end
+end)
+
+TB_3.MouseButton1Click:Connect(function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(361, 42, -288)
+    wait(0.5)
+    fireproximityprompt(workspace.Map.om_jangan_om.ProximityPrompt)
+end)
+
+-- Destroy TL after 5 seconds
+coroutine.wrap(function()
+    wait(5)
+    TL:Destroy()
+end)()
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(0, 5)
+UC.Parent = TB
+
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(0, 5)
+UC.Parent = TB_2
+
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(0, 5)
+UC.Parent = TB_3
+
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(0, 5)
+UC.Parent = TL
+
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(0, 5)
+UC.Parent = CnO
