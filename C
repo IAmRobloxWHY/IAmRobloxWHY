@@ -1,1 +1,127 @@
---Script is deleted! reason is admin
+local gui = Instance.new("ScreenGui")
+gui.Name = "patrickGui"
+gui.Parent = game.CoreGui
+
+--///patrick gui maker///--
+
+
+-- put your mainframe into the screengui that I have made (frame.Parent = gui) 
+
+local TB = Instance.new("TextButton")
+TB.Size = UDim2.new(0.14, 0, 0.18, 0)
+TB.Position = UDim2.new(0.2, 0, 0.5, -165)
+TB.BackgroundColor3 = Color3.new(1, 1, 1)
+TB.BorderColor3 = Color3.new(0, 0, 0)
+TB.BorderSizePixel = 1
+TB.Text = "Summon Titan Boombox"
+TB.BackgroundTransparency = 0 
+TB.TextColor3 = Color3.new(0, 1, 0)
+TB.Font = Enum.Font.Code
+TB.Parent = gui
+TB.TextSize = 14.00
+
+
+TB.MouseButton1Click:Connect(function()
+     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(361, 42, -288)
+    wait(0.5)
+    fireproximityprompt(workspace.Map.om_jangan_om.ProximityPrompt)
+end)
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(9, 5)
+UC.Parent = TB
+
+
+local TB_2 = Instance.new("TextButton")
+TB_2.Size = UDim2.new(0.15, 0, 0.19, 0)
+TB_2.Position = UDim2.new(0.4, 0, 0.5, -165)
+TB_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TB_2.BorderColor3 = Color3.new(0, 0, 0)
+TB_2.BorderSizePixel = 1
+TB_2.Text = "Kill Aura On"
+TB_2.BackgroundTransparency = 0 
+TB_2.TextColor3 = Color3.new(0, 1, 0)
+TB_2.Font = Enum.Font.Code
+TB_2.Parent = gui
+TB_2.TextSize = 14.00
+
+
+TB_2.MouseButton1Click:Connect(function()
+     getgenv().G = true
+getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+wait(1)
+sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 112412400000)
+sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", 112412400000)
+for i,d in pairs(game:GetService("Workspace"):GetDescendants()) do
+    if d.ClassName == 'Humanoid' and d.Parent.Name ~= game.Players.LocalPlayer.Name then
+        d.Health = 0
+    end
+end
+end
+end)
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(9, 5)
+UC.Parent = TB_2
+
+
+local TB_3 = Instance.new("TextButton")
+TB_3.Size = UDim2.new(0.15, 0, 0.19, 0)
+TB_3.Position = UDim2.new(0.6, 0, 0.5, -165)
+TB_3.BackgroundColor3 = Color3.new(1, 1, 1)
+TB_3.BorderColor3 = Color3.new(0, 0, 0)
+TB_3.BorderSizePixel = 1
+TB_3.Text = "Kill Aura Off"
+TB_3.BackgroundTransparency = 0 
+TB_3.TextColor3 = Color3.new(1, 0, 0)
+TB_3.Font = Enum.Font.Code
+TB_3.Parent = gui
+TB_3.TextSize = 14
+
+
+TB_3.MouseButton1Click:Connect(function()
+     getgenv().G = false
+end)
+
+
+local UC = Instance.new("UICorner")
+UC.CornerRadius = UDim.new(9, 5)
+UC.Parent = TB_3
+
+local TB_4 = Instance.new("TextButton")
+TB_4.Size = UDim2.new(0.1, 0, 0.1, 0)
+TB_4.Position = UDim2.new(0.9, 0, 0.5, 0)
+TB_4.BackgroundColor3 = Color3.new(1, 1, 1)
+TB_4.BorderColor3 = Color3.new(0, 0, 0)
+TB_4.BorderSizePixel = 1
+TB_4.Text = "Close"
+TB_4.BackgroundTransparency = 0 
+TB_4.TextColor3 = Color3.new(1, 0, 0)
+TB_4.Font = Enum.Font.Code
+TB_4.Parent = gui
+TB_4.TextSize = 14
+
+
+TB_4.MouseButton1Click:Connect(function()
+    if TB.Visible then
+        TB.Visible = false
+        TB_2.Visible = false
+        TB_3.Visible = false
+        TB_4.Text = "Open"
+        TB_4.TextColor3 = Color3.new(0, 1, 0)
+    else
+        TB.Visible = true
+        TB_2.Visible = true
+        TB_3.Visible = true
+        TB_4.Text = "Close"
+        TB_4.TextColor3 = Color3.new(1, 0, 0)
+    end
+end)
+
+
+local UC_4 = Instance.new("UICorner")
+UC_4.CornerRadius = UDim.new(0, 5)
+UC_4.Parent = TB_4
+
+
