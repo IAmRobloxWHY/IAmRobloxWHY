@@ -1,0 +1,82 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+
+local Window = Library.CreateLib("[upd4.5] superbox siege defense", "DarkTheme")
+
+local Tab = Window:NewTab("AutoFarm")
+
+local Section = Tab:NewSection("Thanks for using")
+
+Section:NewButton("1st", "ButtonInfo", function()
+    -- Function to handle the proximity prompt loop
+local function proximityLoop()
+    while true do
+        wait(0.1)
+        
+        -- Check if the proximity prompt exists
+        local prompt = workspace:WaitForChild("lobby"):WaitForChild("btns"):WaitForChild("Sand"):WaitForChild("ProximityPrompt", 1)
+        
+        -- If prompt is found, fire it
+        if prompt then
+            fireproximityprompt(prompt)
+        end
+    end
+end
+
+-- Start the proximity prompt loop
+spawn(proximityLoop)
+
+getgenv().G = true
+getgenv().Creator = 'https://discord.gg/B3HqPPzFYr - HalloweenGaster'
+while getgenv().G and getgenv().Creator == 'https://discord.gg/B3HqPPzFYr - HalloweenGaster' do
+wait(1)
+sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 112412400000)
+sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", 112412400000)
+for i,d in pairs(game:GetService("Workspace"):GetDescendants()) do
+    if d.ClassName == 'Humanoid' and d.Parent.Name ~= game.Players.LocalPlayer.Name then
+        d.Health = 0
+    end
+end
+end
+end)
+
+Section:NewButton("2st", "ButtonInfo", function()
+    -- Function to continuously fire proximity prompts under workspace.Map
+local function fireProximityPrompts()
+    while true do
+        wait(0.1)
+        
+        -- Check if workspace.Map exists
+        if workspace.Map then
+            -- Loop through all descendants of workspace.Map
+            for _, child in ipairs(workspace.Map:GetDescendants()) do
+                if child:IsA("ProximityPrompt") then
+                    pcall(function()
+                        fireproximityprompt(child)
+                    end)
+                end
+            end
+        end
+    end
+end
+
+-- Function to continuously teleport the character
+local function teleportCharacter()
+    while true do
+        wait(1) -- Adjust the wait time as needed
+        
+        -- Teleport the character to a specific CFrame
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character:MoveTo(Vector3.new(366.686279, 14.3935423, -294.450012))
+        end
+    end
+end
+
+-- Start both loops concurrently
+spawn(fireProximityPrompts)
+spawn(teleportCharacter)
+
+end)
+
+Section:NewButton("AntiAfk", "ButtonInfo", function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Proxylol/OtherScripts/main/AntiAfk.lua'),true))()
+end)
