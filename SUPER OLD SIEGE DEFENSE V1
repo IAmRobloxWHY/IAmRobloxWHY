@@ -1,0 +1,247 @@
+local gui = Instance.new("ScreenGui")
+gui.Name = "patrickGui"
+gui.Parent = game.CoreGui
+
+local TextButton = Instance.new("TextButton")
+TextButton.Name = "ToggleButton"
+TextButton.Text = "Toggle"
+TextButton.TextSize = 24
+TextButton.TextColor3 = Color3.new(128, 0, 128)
+TextButton.BackgroundColor3 = Color3.new(0, 0, 0)
+TextButton.BorderColor3 = Color3.new(128, 0, 128)
+TextButton.BorderSizePixel = 3
+TextButton.Font = Enum.Font.Code
+TextButton.Size = UDim2.new(0.05, 0, 0.1, 0)
+TextButton.Position = UDim2.new(0.47, 0, 0, 0)
+TextButton.Parent = gui
+
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("super old siege defense [UPD 5.0]", "Ocean")
+
+local Tab = Window:NewTab("TC")
+local Tab2 = Window:NewTab("TS")
+local Tab3 = Window:NewTab("UTC")
+local Tab4 = Window:NewTab("UTS")
+local Tab5 = Window:NewTab("IUTC")
+local Tab6 = Window:NewTab("UTTM")
+local Tab7 = Window:NewTab("SUTTM")
+local TabP = Window:NewTab("LocalPlayer")
+
+local Section = Tab:NewSection("Titan Cameraman")
+local Section2 = Tab2:NewSection("Titan Speakerman")
+local Section3 = Tab3:NewSection("Upgraded Titan Cameraman")
+local Section4 = Tab4:NewSection("Upgraded Titan Speakerman")
+local Section5 = Tab5:NewSection("Improved Titan Cameraman")
+local Section6 = Tab6:NewSection("Upgraded Titan Tv Man")
+local Section7 = Tab7:NewSection("Super Upgraded Titan Tv Man")
+local SectionP = TabP:NewSection("Player")
+
+Section:NewToggle("AutoOrb", "ToggleInfo", function(state)
+    _G.ORBTC = state
+    while _G.ORBTC do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ORBTC")
+        wait(0.3)
+    end
+end)
+
+Section:NewToggle("AutoCombo", "ToggleInfo", function(state)
+    _G.COMBOTCM = state
+    while _G.COMBOTCM do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("COMBOTCM")
+        wait(0.5)
+    end
+end)
+
+Section2:NewToggle("AutoBlaster (Have cooldown)", "ToggleInfo", function(state)
+    _G.Blaster = state
+    while _G.Blaster do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("Blaster")
+        wait(0.5)
+    end
+end)
+
+Section3:NewToggle("AutoGravityGun", "ToggleInfo", function(state)
+    _G.GravityGun = state
+    while _G.GravityGun do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("GRAVITYUTCM")
+        wait(1)
+    end
+end)
+
+Section3:NewToggle("AutoBlaster", "ToggleInfo", function(state)
+    _G.Blaster2 = state
+    while _G.Blaster2 do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("BlasterUTC")
+        wait(0.3)
+    end
+end)
+
+Section4:NewToggle("AutoBlaster", "ToggleInfo", function(state)
+    _G.Blaster3 = state
+    while _G.Blaster3 do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("BlasterUTSM")
+        wait(0.3)
+    end
+end)
+
+Section4:NewToggle("AutoBlaster (Spin)", "ToggleInfo", function(state)
+    _G.Blaster4 = state
+    while _G.Blaster4 do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("UltraUTSM")
+        wait(8)
+    end
+end)
+
+Section5:NewToggle("AutoGravityGun", "ToggleInfo", function(state)
+    _G.GravityGun2 = state
+    while _G.GravityGun2 do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("GRAVITYUTCM")
+        wait(1)
+    end
+end)
+
+Section5:NewToggle("AutoBlaster", "ToggleInfo", function(state)
+    _G.Blaster6 = state
+    while _G.Blaster6 do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("BlasterUTC")
+        wait(0.3)
+    end
+end)
+
+Section5:NewToggle("AutoMiniGun (Only For kill Boss)", "ToggleInfo", function(state)
+    _G.MiniGun = state
+    while _G.MiniGun do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("SHOULDERGUNS")
+        wait(1)
+    end
+end)
+
+Section5:NewToggle("AutoShield", "ToggleInfo", function(state)
+    _G.Shield = state
+    while _G.Shield do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("SHIELDIUTCM")
+        wait(3)
+    end
+end)
+
+Section6:NewToggle("Red Screen", "ToggleInfo", function(state)
+    _G.RedScreen = state
+    while _G.RedScreen do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ScreenUTTV")
+        wait(5)
+    end
+end)
+
+Section6:NewToggle("Absorb Laser", "ToggleInfo", function(state)
+    _G.AbsorbLaser = state
+    while _G.AbsorbLaser do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ABSORBATTACK")
+        wait(1)
+    end
+end)
+
+Section6:NewToggle("AutoSpawnMainHead", "ToggleInfo", function(state)
+    _G.MainHead = state
+    while _G.MainHead do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("detachmainhead")
+        wait(3)
+    end
+end)
+
+Section6:NewToggle("AutoSpawnLeftHead", "ToggleInfo", function(state)
+    _G.LeftHead = state
+    while _G.LeftHead do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("detachlefthead")
+        wait(3)
+    end
+end)
+
+Section6:NewToggle("AutoSpawnRightHead", "ToggleInfo", function(state)
+    _G.RightHead = state
+    while _G.RightHead do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("detachrighthead")
+        wait(3)
+    end
+end)
+
+Section6:NewToggle("AutoShootCoreOrb", "ToggleInfo", function(state)
+    _G.CoreOrb = state
+    while _G.CoreOrb do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("UTTVCOREORB")
+        wait(0.3)
+    end
+end)
+
+Section6:NewToggle("Move (For Using Red Screen Can Move)", "ToggleInfo", function(state)
+    _G.Move = state
+    while _G.Move do
+        local character = game.Players.LocalPlayer.Character
+        if character and character:FindFirstChild("Humanoid") then
+            character.Humanoid.WalkSpeed = 31.326
+        end
+        wait()
+    end
+end)
+
+Section7:NewToggle("Red Screen", "ToggleInfo", function(state)
+    _G.RedScreen2 = state
+    while _G.RedScreen2 do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ScreenSUTTV")
+        wait(5)
+    end
+end)
+
+Section7:NewToggle("Absorb Laser", "ToggleInfo", function(state)
+    _G.AbsorbLaser = state
+    while _G.AbsorbLaser do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("ABSORBATTACK")
+        wait(1)
+    end
+end)
+
+Section7:NewToggle("AutoSpawnMainHead", "ToggleInfo", function(state)
+    _G.MainHead = state
+    while _G.MainHead do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("detachmainhead")
+        wait(3)
+    end
+end)
+
+Section7:NewToggle("AutoSpawnLeftHead", "ToggleInfo", function(state)
+    _G.LeftHead = state
+    while _G.LeftHead do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("detachlefthead")
+        wait(3)
+    end
+end)
+
+Section7:NewToggle("AutoSpawnRightHead", "ToggleInfo", function(state)
+    _G.RightHead = state
+    while _G.RightHead do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("detachrighthead")
+        wait(3)
+    end
+end)
+
+Section7:NewToggle("AutoShootCoreOrb", "ToggleInfo", function(state)
+    _G.CoreOrb = state
+    while _G.CoreOrb do
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer("UTTVCOREORB")
+        wait(0.3)
+    end
+end)
+
+Section7:NewToggle("Move (For Using Red Screen Can Move)", "ToggleInfo", function(state)
+    _G.Move = state
+    while _G.Move do
+        local character = game.Players.LocalPlayer.Character
+        if character and character:FindFirstChild("Humanoid") then
+            character.Humanoid.WalkSpeed = 31.326
+        end
+        wait()
+    end
+end)
+
+TextButton.MouseButton1Click:Connect(function()
+    Library:ToggleUI()
+end)
