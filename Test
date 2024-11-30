@@ -1,0 +1,349 @@
+-- Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/DenDenZZZ/Kavo-UI-Library/main/Kavo.lua"))()
+
+-- Windown
+local Window = Library.CreateLib("Superbox Siege Defense [WHY Hub] [v3]", "DarkTheme")
+
+-- Tabs
+local TabMA = Window:NewTab("Main/AutoFarm")
+local TabAB = Window:NewTab("AutoAbility")
+local TabT = Window:NewTab("Teleport")
+local TabC = Window:NewTab("Creator")
+
+--Sections
+local SectionMA = TabMA:NewSection("Thanks For using")
+local SectionAF = TabMA:NewSection("AutoFarm")
+local SectionAF2 = TabMA:NewSection("AutoClose")
+local SectionAF3 = TabMA:NewSection("Other")
+local SectionAB = TabAB:NewSection("AutoPressKey")
+local SectionAB2 = TabAB:NewSection("AutoPressKey [Titan]")
+local SectionT = TabT:NewSection("Teleport To..")
+local SectionC = TabC:NewSection("Created To: gagghigggg")
+local SectionC2 = TabC:NewSection("Discord User: why_roblo_x#0000")
+
+
+-- Buttons
+SectionT:NewButton("Lobby", "ButtonInfo", function()
+    game:GetService("TeleportService"):Teleport("14852797539")
+end)
+
+SectionT:NewButton("Limbo", "ButtonInfo", function()
+    game:GetService("TeleportService"):Teleport("15323167440")
+end)
+
+SectionT:NewButton("Redacted Location (Enhanced Brown Telescopes Location)", "ButtonInfo", function()
+    game:GetService("TeleportService"):Teleport("17706411455")
+end)
+
+SectionT:NewButton("Sawblade Base", "ButtonInfo", function()
+    game:GetService("TeleportService"):Teleport("17049539226")
+end)
+
+-- Toggles
+Section:NewToggle("AutoFarm", "ToggleInfo", function(state)
+    if state then
+        getgenv().AutoFarm = true
+        getgenv().KillESB2 = true
+
+        local function proximityLoop()
+            while getgenv().AutoFarm do
+                wait(0.1)
+                local prompt = workspace:WaitForChild("lobby"):WaitForChild("btns"):WaitForChild("Sand"):WaitForChild("ProximityPrompt", 1)
+                if prompt then
+                    fireproximityprompt(prompt)
+                end
+            end
+        end
+
+        local function fireProximityPrompts()
+            while getgenv().AutoFarm do
+                wait(0.1)
+                if workspace.Map then
+                    for _, child in ipairs(workspace.Map:GetDescendants()) do
+                        if child:IsA("ProximityPrompt") then
+                            pcall(function()
+                                fireproximityprompt(child)
+                            end)
+                        end
+                    end
+                end
+            end
+        end
+
+        local function teleportCharacter()
+            while getgenv().AutoFarm do
+                wait(1)
+                if game.Players.LocalPlayer.Character then
+                    game.Players.LocalPlayer.Character:MoveTo(Vector3.new(366.686279, 14.3935423, -294.450012))
+                end
+            end
+        end
+
+        local function killESB2()
+            while getgenv().KillESB2 do
+                wait(1)
+                sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", 112412400000)
+                sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", 112412400000)
+                local enemy = game.Workspace.Enemies:FindFirstChild("Enhanced Supreme Boombox 2")
+                if enemy and enemy:FindFirstChildOfClass('Humanoid') then
+                    enemy.Humanoid.Health = 0
+                end
+            end
+        end
+
+        spawn(proximityLoop)
+        spawn(fireProximityPrompts)
+        spawn(teleportCharacter)
+        spawn(killESB2)
+    else
+        getgenv().AutoFarm = false
+        getgenv().KillESB2 = false
+    end
+end)
+
+SectionAF2:NewToggle("CloseAura", "ToggleInfo", function(state)
+    if state then
+        getgenv().CloseA = true
+        while getgenv().CloseA do
+            for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+                if enemy:FindFirstChild("Box") and enemy.Box:FindFirstChild("Close") then
+                    fireproximityprompt(enemy.Box.Close)
+                end
+            end
+            task.wait()
+        end
+    else
+        getgenv().CloseA = false
+    end
+end)
+
+SectionAF2:NewToggle("AutoTP", "ToggleInfo", function(state)
+    if state then
+        getgenv().AutoTPB = true
+        while getgenv().AutoTPB do
+            for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+                if enemy:FindFirstChild("Box") then
+                    local targetCFrame = enemy.Box.CFrame * CFrame.new(0, 3, 5)
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetCFrame
+                end
+            end
+            task.wait(0.5)
+        end
+    else
+        getgenv().AutoTPB = false
+    end
+end)
+
+SectionAF2:NewToggle("AutoClose", "ToggleInfo", function(state)
+    if state then
+        local function AutoTP()
+            getgenv().AutoTPB = true
+            while getgenv().AutoTPB do
+                for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+                    if enemy:FindFirstChild("Box") then
+                        local targetCFrame = enemy.Box.CFrame * CFrame.new(0, 3, 5)
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetCFrame
+                    end
+                end
+                task.wait(0.5)
+            end
+        end
+
+        local function CloseAura()
+            getgenv().CloseA = true
+            while getgenv().CloseA do
+                for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+                    if enemy:FindFirstChild("Box") and enemy.Box:FindFirstChild("Close") then
+                        fireproximityprompt(enemy.Box.Close)
+                    end
+                end
+                task.wait()
+            end
+        end
+
+        spawn(AutoTP)
+        spawn(CloseAura)
+    else
+        getgenv().AutoTPB = false
+        getgenv().CloseA = false
+    end
+end)
+
+SectionAF2:NewToggle("AutoClose [Only Parasites]", "ToggleInfo", function(state)
+    if state then
+        local function AutoTP()
+            getgenv().AutoTPP = true
+            while getgenv().AutoTPP do
+                for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+                    if enemy:FindFirstChild("Parasite") then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = enemy.Parasite.CFrame
+                    end
+                end
+                task.wait(0.5)
+            end
+        end
+
+        local function CloseAura()
+            getgenv().CloseA = true
+            while getgenv().CloseA do
+                for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+                    if enemy:FindFirstChild("Parasite") and enemy.Parasite:FindFirstChild("ProximityPrompt") then
+                        fireproximityprompt(enemy.Parasite.ProximityPrompt)
+                    end
+                end
+                task.wait()
+            end
+        end
+
+        spawn(AutoTP)
+        spawn(CloseAura)
+    else
+        getgenv().AutoTPP = false
+        getgenv().CloseA = false
+    end
+end)
+
+SectionAF3:NewToggle("InstantPress", "ToggleInfo", function(state)
+    if state then
+        getgenv().InstantPress = true
+        while getgenv().InstantPress do
+            for _, obj in pairs(game.Workspace:GetDescendants()) do
+                if obj:IsA("ProximityPrompt") then
+                    obj.HoldDuration = 0
+                end
+            end
+            wait(0.5)
+        end
+    else
+        getgenv().InstantPress = false
+    end
+end)
+
+SectionAF3:NewToggle("AntiAfk", "ToggleInfo", function(state)
+    if state then
+        getgenv().AntiAfk = true
+
+        local player = game.Players.LocalPlayer
+
+        while getgenv().AntiAfk do
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, game, 0)
+            task.wait(0.1)
+            game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, false, game, 0)
+            task.wait(59.9)
+        end
+    else
+        getgenv().AntiAfk = false
+    end
+end)
+
+local autoF = false
+SectionAB:NewToggle("Auto F", "Auto F ability.", function(state)
+    if state then
+        autoF = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.F, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.F, false, game)
+            wait(1)
+        until not autoF
+    else
+        autoF = false
+    end
+end)
+
+local autoG = false
+SectionAB:NewToggle("Auto G", "Auto G ability.", function(state)
+    if state then
+        autoG = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.G, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.G, false, game)
+            wait(1)
+        until not autoG
+    else
+        autoG = false
+    end
+end)
+
+local autoQ = false
+SectionAB:NewToggle("Auto Q", "Auto Q ability.", function(state)
+    if state then
+        autoQ = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Q, false, game)
+            wait(1)
+        until not autoQ
+    else
+        autoQ = false
+    end
+end)
+
+local autoT = false
+SectionAB:NewToggle("Auto T", "Auto T ability.", function(state)
+    if state then
+        autoT = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.T, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.T, false, game)
+            wait(1)
+        until not autoT
+    else
+        autoT = false
+    end
+end)
+
+local autoR = false
+SectionAB:NewToggle("Auto R", "Auto R ability.", function(state)
+    if state then
+        autoR = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.R, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.R, false, game)
+            wait(1)
+        until not autoR
+    else
+        autoR = false
+    end
+end)
+
+local autoZ = false
+SectionAB:NewToggle("Auto Z", "Auto Z ability.", function(state)
+    if state then
+        autoZ = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Z, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Z, false, game)
+            wait(1)
+        until not autoZ
+    else
+        autoZ = false
+    end
+end)
+
+local autoShift = false
+SectionAB:NewToggle("Auto Shift", "Auto Shift ability.", function(state)
+    if state then
+        autoShift = true
+        repeat
+            local VirtualInputManager = game:GetService("VirtualInputManager")
+            VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.LeftShift, false, game)
+            wait(0.1)
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.LeftShift, false, game)
+            wait(1)
+        until not autoShift
+    else
+        autoShift = false
+    end
+end)
