@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>敲木鱼积功德</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #FFF8F0;
+            background-image: url('https://img.freepik.com/free-photo/old-paper-texture_1194-5413.jpg');
+            background-size: cover;
+            padding: 20px 0;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: rgba(255, 248, 240, 0.9);
+            padding: 30px 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(139, 69, 19, 0.3);
+            border: 2px solid #8B4513;
+            width: 280px;
+        }
+        
+        h1 {
+            color: #8B4513;
+            margin: 0 0 25px 0;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .muyu {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            background-image: url('https://i.ibb.co/S42Vys5Y/removebg-preview.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.1s;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+        
+        .muyu:active {
+            transform: scale(1.1);
+            outline: none;
+        }
+        
+        .muyu:focus {
+            outline: none;
+        }
+        
+        .message {
+            position: absolute;
+            color: #8B4513;
+            font-size: 18px;
+            font-weight: bold;
+            animation: floatUp 1.5s forwards;
+            opacity: 0;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px white;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .instructions {
+            margin-top: 25px;
+            color: #8B4513;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .achievement {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(139, 69, 19, 0.1);
+            border-radius: 5px;
+            color: #8B4513;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .auto-btn {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: rgba(139, 69, 19, 0.2);
+            border: 1px solid #8B4513;
+            border-radius: 5px;
+            color: #8B4513;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: none;
+        }
+        
+        .auto-btn:hover {
+            background-color: rgba(139, 69, 19, 0.3);
+        }
+        
+        .auto-btn.active {
+            background-color: rgba(139, 69, 19, 0.4);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>敲木鱼积功德</h1>
+        <div class="counter">功德: <span id="count">0</span></div>
+        
+        <div class="muyu" id="muyu" tabindex="0"></div>
+        
+        <button class="auto-btn" id="autoBtn">自动积德 (0.5秒/次)</button>
+        
+        <div class="achievement" id="achievement"></div>
+        <p class="instructions">点击木鱼积攒功德，功德无量</p>
+    </div>
+
+    <!-- 创建多个音频元素备用 -->
+    <audio id="sound1" src="https://raw.githubusercontent.com/IAmRobloxWHY/Sound/main/muyu.mp3" preload="auto"></audio>
+    <audio id="sound2" src="https://raw.githubusercontent.com/IAmRobloxWHY/Sound/main/muyu.mp3" preload="auto"></audio>
+    <audio id="sound3" src="https://raw.githubusercontent.com/IAmRobloxWHY/Sound/main/muyu.mp3" preload="auto"></audio>
+
+    <script>
+        const muyu = document.getElementById('muyu');
+        const countElement = document.getElementById('count');
+        const achievementElement = document.getElementById('achievement');
+        const autoBtn = document.getElementById('autoBtn');
+        let count = 0;
+        let autoInterval = null;
+        let isAutoActive = false;
+        let lastSaveTime = 0;
+        
+        // 初始化时加载保存的功德
+        function loadMerit() {
+            const savedCount = localStorage.getItem('meritCount');
+            if (savedCount) {
+                count = parseInt(savedCount);
+                countElement.textContent = count;
+                
+                // 检查是否需要显示自动按钮
+                if (count >= 500) {
+                    autoBtn.style.display = 'inline-block';
+                }
+            }
+        }
+        
+        // 自动保存功德到本地存储
+        function autoSaveMerit() {
+            const now = Date.now();
+            // 限制保存频率，至少间隔1秒
+            if (now - lastSaveTime > 1000) {
+                localStorage.setItem('meritCount', count.toString());
+                lastSaveTime = now;
+            }
+        }
+        
+        // 页面加载时读取保存的数据
+        window.addEventListener('load', loadMerit);
+        
+        // 页面关闭前保存数据
+        window.addEventListener('beforeunload', autoSaveMerit);
+        
+        // 音频池
+        const audioPool = [
+            document.getElementById('sound1'),
+            document.getElementById('sound2'),
+            document.getElementById('sound3')
+        ];
+        let currentAudioIndex = 0;
+        
+        // 确保音频能播放
+        document.body.addEventListener('click', function initAudio() {
+            audioPool.forEach(audio => {
+                audio.play().then(() => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }).catch(e => console.log("音频初始化失败:", e));
+            });
+            document.body.removeEventListener('click', initAudio);
+        }, { once: true });
+        
+        // 成就信息
+        const achievements = {
+            10: "功德初显",
+            50: "小有功德",
+            100: "功德无量",
+            500: "功德圆满 - 解锁自动积德",
+            1000: "功德成佛"
+        };
+        
+        // 点击木鱼
+        muyu.addEventListener('click', function() {
+            addMerit();
+        });
+        
+        // 键盘回车也能触发
+        muyu.addEventListener('keydown', function(e) {
+            if(e.key === 'Enter') {
+                addMerit();
+            }
+        });
+        
+        // 自动积德按钮
+        autoBtn.addEventListener('click', function() {
+            if (!isAutoActive) {
+                isAutoActive = true;
+                this.classList.add('active');
+                autoInterval = setInterval(addMerit, 500);
+            } else {
+                isAutoActive = false;
+                this.classList.remove('active');
+                clearInterval(autoInterval);
+            }
+        });
+        
+        function playSound() {
+            const audio = audioPool[currentAudioIndex];
+            currentAudioIndex = (currentAudioIndex + 1) % audioPool.length;
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("音频播放失败:", e));
+            return audio;
+        }
+        
+        function addMerit() {
+            // 播放音效
+            playSound();
+            
+            // 增加功德计数
+            count++;
+            countElement.textContent = count;
+            
+            // 自动保存
+            autoSaveMerit();
+            
+            // 检查成就
+            if (achievements[count]) {
+                showAchievement(achievements[count]);
+                
+                // 达到500功德时显示自动按钮
+                if (count === 500) {
+                    autoBtn.style.display = 'inline-block';
+                    showAchievement("已解锁自动积德功能！");
+                }
+            }
+            
+            // 创建"功德+1"文字
+            createMessage();
+        }
+        
+        function createMessage() {
+            const message = document.createElement('div');
+            message.className = 'message';
+            message.textContent = '功德+1';
+            
+            const rect = muyu.getBoundingClientRect();
+            const x = rect.left + rect.width / 2 + (Math.random() * 50 - 25);
+            const y = rect.top + rect.height / 2;
+            
+            message.style.left = x + 'px';
+            message.style.top = y + 'px';
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 1500);
+        }
+        
+        function showAchievement(text) {
+            achievementElement.textContent = `达成: ${text}`;
+            achievementElement.style.display = 'block';
+            
+            setTimeout(() => {
+                achievementElement.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
